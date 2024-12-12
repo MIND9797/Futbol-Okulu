@@ -310,6 +310,7 @@ body{
     right: 0;
     top: 5px;
     cursor: pointer;
+    background-color: #151515;
   }
 
   .add_student_button_wrapper{

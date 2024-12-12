@@ -129,6 +129,7 @@ body{
   padding-left: 10px;
   border-radius: 5px;
   transition: all .3s ease;
+  background-color: #050505;
 }
 .search-element:hover{
   cursor: pointer;
