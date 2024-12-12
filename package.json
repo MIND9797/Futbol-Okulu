@@ -8,5 +8,9 @@
     "mongoose": "^8.8.3",
     "node-cron": "^3.0.3",
     "nodemon": "^3.1.7"
+  },
+  "scripts": {
+    "start": "node server/server.js",
+    "build": "react-scripts build"
   }
 }
