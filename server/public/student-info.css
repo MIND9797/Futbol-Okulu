@@ -377,6 +377,7 @@ body{
     right: 0;
     top: 5px;
     cursor: pointer;
+    background-color: #151515;
   }
 
 #student-delete-tb{
