@@ -1,0 +1,221 @@
+*{
+    background-color: rgb(5,5,5);
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+.container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+.container_wrapper{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 10px;
+}
+.login_wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+.login_text{
+    color: #adff2f;
+    font-size: 45px;
+    font-weight: 700;
+    width: 350px;
+    text-align: center;
+    margin-left: -5px;
+    margin-top: 170px;
+    margin-bottom: 30px;
+}
+.login_text h4{
+    font-size: 35px;
+    color: silver;
+    font-style: italic;
+}
+.username_wrapper, .password_wrapper{
+    width: 350px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+#username, #password{
+    font-size: 18px;
+    border-radius: 5px;
+    width: 270px;
+}
+
+.login_button_wrapper{
+    margin-top: 40px;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* From Uiverse.io by nikk7007 */ 
+.button {
+    --color: #adff2f;
+    padding: 0.8em 1.7em;
+    background-color: transparent;
+    border-radius: .3em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .5s;
+    font-weight: 600;
+    font-size: 17px;
+    border: 1px solid;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: whitesmoke;
+    border-color: #adff2f;
+    z-index: 1;
+    width: 270px;
+    margin-top: -25px;
+   }
+   
+   .button::before, .button::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    background-color: var(--color);
+    transition: 1s ease;
+   }
+   
+   .button::before {
+    top: -1em;
+    left: -1em;
+   }
+   
+   .button::after {
+    left: calc(100% + 1em);
+    top: calc(100% + 1em);
+   }
+   
+   .button:hover::before, .button:hover::after {
+    height: 410px;
+    width: 410px;
+   }
+   
+   .button:hover {
+    color: rgb(10, 25, 30);
+   }
+   
+   .button:active {
+    filter: brightness(.8);
+   }
+
+   .button:focus{
+    outline: none;
+    animation: .9s button_animate;
+   }
+
+   @keyframes button_animate {
+    0% {
+    }
+    50% {
+        box-shadow: 0px 0px 27px 10px #adff2f;
+    }
+    100% {
+    }
+}
+   
+.input-container {
+    position: relative;
+    width: 270px;
+  }
+  
+  .input-container input{
+    font-size: 20px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 5px 0;
+    background-color: transparent;
+    outline: none;
+    position: relative;
+  }
+  
+  .input-container .label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #ccc;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .input-container input:focus ~ .label,
+  .input-container input:valid ~ .label{
+    top: -20px;
+    font-size: 16px;
+    color: #adff2f;
+  }
+  
+  .input-container .underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #adff2f;
+    transform: scaleX(0);
+    transition: all 0.3s ease;
+  }
+  
+  .input-container input:focus ~ .underline,
+  .input-container input:valid ~ .underline{
+    transform: scaleX(1);
+  }
+
+  .login_wrapper{
+    font-size: 12px;
+    display: flex;
+    column-gap: 10px;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
+  #wrong_info{
+    font-size: 13px;
+    color: rgb(255, 0, 0);
+    height: 0px;
+    overflow: hidden;
+    transition: .4s;
+    width: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media(max-width: 400px){
+    .lower_main{
+      height: 10px !important;
+    }
+
+    .username_wrapper, .password_wrapper{
+      width: 100%;
+    }
+
+    .login_button_wrapper{
+      width: 100%;
+    }
+
+    .login_text{
+      margin-left: 0px;
+  }
+  }
+  

@@ -1,0 +1,615 @@
+*{
+    color: #f5f5f5;
+}
+
+body{
+    display: flex;
+}
+
+.container{
+    width: 80%;
+    height: 85vh;
+    display: flex;
+    column-gap: 20px;
+}
+
+.first{
+    width: 48%;
+}
+
+.second{
+  width: 48%;
+}
+
+.last-payments{
+    background-color: #151515;
+    width: 100%;
+    height: 190px;
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 50px;
+}
+.last-payments h2{
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.last-payment-element{
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    background-color: #050505;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+.last-payment-element .circle-icon{
+  font-size: 4px;
+  color: rgb(84, 83, 83);
+  vertical-align: middle;
+  padding: 4px;
+}
+.last-payment-element h4:nth-child(1){
+    width: 45%;
+}
+.last-payment-element h4:nth-child(2){
+    width: 15%;
+    color: #adff2f;
+    font-size: 17px;
+    font-weight: 800;
+}
+.last-payment-element h5{
+    width: 40%;
+    text-align: right;
+    color: silver;
+    font-size: 12px;
+}
+
+.unpaid-payments{
+    background-color: #151515;
+    width: 100%;
+    height: 467px;
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+.unpaid-payments h2{
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+.unpaid-payments-elements{
+  width: 100%;
+  height: 330px;
+  overflow: auto;
+}
+.unpaid-payments-elements::-webkit-scrollbar{
+  width: 5px;
+}
+.unpaid-payments-elements::-webkit-scrollbar-track {
+  background: #060606; /* Rayın rengi */
+  border-radius: 5px;
+}
+.unpaid-payments-elements::-webkit-scrollbar-thumb {
+  background: #adff2f; /* Scrollbar rengi */
+  border-radius: 5px; /* Köşeleri yuvarlat */
+}
+
+.search-section{
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#unpaid-payments-search-results, #edit-payments-search-results, #add-payment-search-results{
+  width: 45%;
+  position: absolute;
+  left: 0;
+  top: 37px;
+  background-color: #050505;
+  border-radius: 5px;
+  display: none;
+  flex-direction: column;
+  row-gap: 2px;
+  padding: 5px;
+  overflow: hidden;
+  border: 2px solid #adff2f;
+  border-top-left-radius: unset;
+  border-top-right-radius: unset;
+  border-top: unset;
+}
+ .search-element{
+  width: 100%;
+  height: 30px;
+  color: silver;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  border-radius: 5px;
+  transition: all .3s ease;
+}
+.search-element:hover{
+  cursor: pointer;
+  background-color: #101010;
+}
+
+.group {
+    display: flex;
+    line-height: 15px;
+    align-items: center;
+    position: relative;
+    width: 45%;
+    transition: all .3s ease;
+  }
+  
+  .input {
+    width: 100%;
+    height: 35px;
+    padding-left: 2rem;
+    font-size: 17px;
+    border: 0;
+    border-radius: 7px;
+    background-color: 	#050505;
+    outline: none;
+    color: #F5F5F5;
+    transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+    cursor: text;
+    z-index: 0;
+  }
+  
+  .input::placeholder {
+    color: #a2a2a2;
+  }
+  
+  .input:hover {
+    box-shadow: 0 0 0 2.5px #adff2f, 0px 0px 25px -15px #000;
+  }
+  
+  .input:active {
+    transform: scale(0.95);
+  }
+  
+  .input:focus {
+    box-shadow: 0 0 0 2.5px #adff2f;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 0.5rem;
+    fill: #F5F5F5;
+    width: 1rem;
+    height: 1rem;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  .payment-element{
+    width: 98%;
+    background-color: #050505;
+    padding: 0px 10px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    transition: all .3s ease;
+    margin-bottom: 5px;
+  }
+  .payment-element .top{
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    transition: all .3s ease;
+  }
+  .payment-element .top h4:nth-child(1){
+    width: 42%;
+  }
+  .payment-element .top .date{
+    width: 53%;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+  }
+  .payment-element .top .date .date-div{
+    width: 45%;
+    text-align: right;
+  }
+  .payment-element .top .offset{
+    color: silver;
+    font-size: 14px;
+  }
+  .payment-element .top i{
+    color: #adff2f;
+    cursor: pointer;
+  }
+
+  .payment-element .bottom{
+    display: none;
+    height: 100px;
+    margin-top: 15px;
+    width: 100%;
+    position: relative;
+  }
+  .edit-element .bottom{
+    display: none;
+    height: 100px;
+    margin-top: 15px;
+    width: 100%;
+    position: relative;
+  }
+
+  .edit-element .bottom .edit-inputs-wrapper{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 60px;
+    padding-left: 20px;
+  }
+  .edit-element .bottom .edit-buttons-wrapper{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
+
+  .payment-element .bottom .unpaid-inputs-wrapper{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 60px;
+    padding-left: 20px;
+  }
+  .payment-element .bottom .unpaid-buttons-wrapper{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
+
+  .payment-element #dues-input{
+    width: 100px;
+    border: none;
+    background-color: #050505;
+    outline: none;
+    font-size: 30px;
+    text-align: right;
+    font-weight: 800;
+  }
+  .payment-element #TL{
+    position: absolute;
+    left: 320px;
+    bottom: 30px;
+    font-size: 25px;
+    font-weight: 700;
+  }
+
+  .input-container {
+    position: relative;
+    width: 150px;
+    height: 40px;
+  }
+  
+  .input-container input {
+    font-size: 15px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 5px 0;
+    background-color: transparent;
+    outline: none;
+    position: relative;
+  }
+  
+  .input-container .label {
+    position: absolute;
+    top: -15px;
+    left: 0;
+    color: #ccc;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .input-container input:focus ~ .label,
+  .input-container input:valid ~ .label{
+    color: #adff2f;
+  }
+  
+  .input-container .underline {
+    position: absolute;
+    bottom: 3px;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #adff2f;
+    transform: scaleX(0);
+    transition: all 0.3s ease;
+  }
+  
+  .input-container input:focus ~ .underline,
+  .input-container input:valid ~ .underline{
+    transform: scaleX(1);
+  }
+
+  .calendar{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .edit-payment{
+    background-color: #151515;
+    width: 100%;
+    height: 677px;
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 50px;
+  }
+  .edit-payment .edit-payments-elements{
+    height: 550px;
+    overflow: auto;
+  }
+  .edit-payments-elements::-webkit-scrollbar{
+    width: 5px;
+  }
+  .edit-payments-elements::-webkit-scrollbar-track {
+    background: #060606; /* Rayın rengi */
+    border-radius: 5px;
+  }
+  .edit-payments-elements::-webkit-scrollbar-thumb {
+    background: #adff2f; /* Scrollbar rengi */
+    border-radius: 5px; /* Köşeleri yuvarlat */
+  }
+
+  .edit-payment h2{
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+.button {
+  --color: #adff2f;
+  padding: 0.4em 1.7em;
+  background-color: transparent;
+  border-radius: .3em;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: .5s;
+  font-weight: 600;
+  font-size: 17px;
+  border: 1px solid;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: var(--color);
+  z-index: 1;
+  width: 150px;
+ }
+.cancel button{
+  --color: red;
+}
+ 
+ .button::before, .button::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  background-color: var(--color);
+  transition: .7s ease;
+ }
+ 
+ .button::before {
+  top: -1em;
+  left: -1em;
+ }
+ 
+ .button::after {
+  left: calc(100% + 1em);
+  top: calc(100% + 1em);
+ }
+ 
+ .button:hover::before, .button:hover::after {
+  height: 210px;
+  width: 210px;
+ }
+ 
+ .button:hover {
+  color: rgb(10, 25, 30);
+ }
+ 
+ .button:active {
+  filter: brightness(.8);
+ }
+
+ .button:focus{
+  outline: none;
+  animation: .9s button_animate;
+ }
+ .cancel .button:focus{
+  animation: .9s button_animate2;
+ }
+
+ @keyframes button_animate {
+  0% {
+  }
+  50% {
+      box-shadow: 0px 0px 27px 10px #adff2f;
+  }
+  100% {
+  }
+}
+@keyframes button_animate2 {
+  0% {
+  }
+  50% {
+      box-shadow: 0px 0px 27px 10px red;
+  }
+  100% {
+  }
+}
+
+@media (max-width: 400px){
+  body{
+    display: block;
+  }
+
+  .container{
+      width: 100%;
+      height: unset;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+  }
+
+  .first{
+      width: 100%;
+  }
+
+  .second{
+    width: 100%;
+  }
+
+  .last-payments{
+      margin-top: 100px;
+      height: 290px;
+  }
+  .last-payments h2{
+      font-size: 20px;
+      margin-top: 10px;
+  }
+
+  .last-payment-element{
+      position: relative;
+      height: 65px;
+      border-radius: 10px;
+  }
+  .last-payment-element h4:nth-child(1){
+      width: unset;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+  }
+  .last-payment-element h4:nth-child(2){
+      width: unset;
+      font-size: 20px;
+      font-weight: 800;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+  }
+  .last-payment-element h5{
+      width: unset;
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+  }
+
+.unpaid-payments{
+    height: 467px;
+    margin-top: 40px;
+}
+.unpaid-payments h2{
+    font-size: 20px;
+    margin-top: 10px;
+}
+.unpaid-payments-elements{
+  width: 100%;
+}
+
+.search-section{
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#unpaid-payments-search-results, #edit-payments-search-results, #add-payment-search-results{
+  width: 100%;
+  top: 43px;
+}
+ .search-element{
+  height: 30px;
+}
+
+.group {
+    display: flex;
+    line-height: 15px;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    transition: all .3s ease;
+  }
+  
+  .input {
+    height: 40px;
+  }
+
+  .payment-element{
+    width: 100%;
+    height: 70px;
+  }
+  .payment-element .top{
+    height: 70px;
+    position: relative;
+  }
+  .payment-element .top h4:nth-child(1){
+    width: unset;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  .payment-element .top .date{
+    width: unset;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    column-gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  .payment-element .top .date .date-div{
+    width: unset;
+    text-align: right;
+    color: silver;
+    font-size: 15px;
+  }
+  .payment-element .top .offset{
+    color: silver;
+    font-size: 14px;
+  }
+  .payment-element .top i{
+    position: absolute;
+    font-size: 30px;
+    top: 23px;
+    right: 15px;
+  }
+
+  .payment-element .bottom{
+    flex-direction: column;
+    row-gap: 15px;
+  }
+  .payment-element .bottom .unpaid-inputs-wrapper, .edit-element .bottom .edit-inputs-wrapper{
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 40px;
+  }
+  .payment-element .bottom .unpaid-buttons-wrapper, .edit-element .bottom .edit-buttons-wrapper{
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 5px;
+  }
+  .payment-element #TL{
+    left: 295px;
+    bottom: 56px;
+  }
+}

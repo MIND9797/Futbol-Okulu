@@ -1,0 +1,233 @@
+body{
+    display: flex;
+}
+
+.container{
+    width: 80%;
+    height: 100vh;
+    padding: 50px;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 23px;
+}
+
+.container .search-student{
+    width: 60%;
+    height: 110px;
+    background-color: #151515;
+    border-radius: 20px;
+    margin: auto;
+    transition: all .3s ease;
+    box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
+}
+.container .search-student:hover{
+    box-shadow: none;
+}
+
+.container .search-student{
+    padding: 27px 0;
+}
+
+/* From Uiverse.io by LightAndy1 */ 
+.group {
+    display: flex;
+    line-height: 35px;
+    align-items: center;
+    position: relative;
+    width: 90%;
+    margin: auto;
+    transition: all .3s ease;
+  }
+  
+  .input {
+    width: 100%;
+    height: 55px;
+    padding-left: 4rem;
+    font-size: 25px;
+    border: 0;
+    border-radius: 12px;
+    background-color: 	#050505;
+    outline: none;
+    color: #F5F5F5;
+    transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+    cursor: text;
+    z-index: 0;
+  }
+  
+  .input::placeholder {
+    color: #a2a2a2;
+  }
+  
+  .input:hover {
+    box-shadow: 0 0 0 2.5px #adff2f, 0px 0px 25px -15px #000;
+  }
+  
+  .input:active {
+    transform: scale(0.95);
+  }
+  
+  .input:focus {
+    box-shadow: 0 0 0 2.5px #adff2f;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 1rem;
+    fill: #F5F5F5;
+    width: 2rem;
+    height: 2rem;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  
+.container .show-students{
+    width: 60%;
+    height: 546px;
+    background-color: #151515;
+    border-radius: 20px;
+    padding-top: 20px;
+    margin: auto;
+    transition: all .3s ease;
+    box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
+}
+.container .show-students:hover{
+    box-shadow: none;
+}
+
+  .show-students .column-names{
+    width: 90%;
+    padding: 15px;
+    padding-left: 30px;
+    margin: auto;
+    background-color: #151515;
+    display: flex;
+    border-radius: 10px;
+    transition: all .3s ease;
+  }
+
+  .show-students .column-names h3{
+    color: #adff2f;
+    width: 17%;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .show-students .column-names h3:nth-child(1){
+    width: 60%;
+    justify-content: left;
+  }
+
+  #students-list{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+  }
+
+  .student{
+    width: 90%;
+    padding: 15px;
+    padding-left: 30px;
+    margin: auto;
+    background-color: #050505;
+    display: flex;
+    border-radius: 10px;
+    transition: all .3s ease;
+  }
+
+  .student h4{
+    width: 17%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 500;
+    color: #F5F5F5;
+  }
+  .student h4:nth-child(1){
+    width: 60%;
+    justify-content: left;
+  }
+  .student .icon-wrapper{
+    padding: 5px;
+    background-color: #adff2f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+  .student #arrow-icon{
+    cursor: pointer;
+    color: #050505;
+  }
+
+  @media (max-width: 400px){
+    body{
+      display: block;
+    }
+
+    .container{
+      width: 100%;
+      padding: 10px;
+    }
+
+    .container .search-student{
+      width: 100%;
+      height: 70px;
+      margin-bottom: 0;
+      padding-top: 14px;
+      margin-top: 100px;
+    }
+
+    .container .show-students{
+      width: 100%;
+      margin-top: 0;
+    }
+  
+    .show-students .column-names{
+      width: 95%;
+      padding: 5px;
+      padding-left: 20px;
+    }
+  
+    .show-students .column-names h3{
+      font-size: 15px;
+    }
+    .show-students .column-names h3:nth-child(1){
+      width: 58%;
+      justify-content: left;
+    }
+  
+    .student{
+      width: 95%;
+      padding: 10px;
+      padding-left: 10px;
+    }
+  
+    .student h4{
+      font-size: 14px;
+    }
+    .student .icon-wrapper i{
+      font-size: 13px;
+    }
+
+    .group {
+      line-height: 25px;
+    }
+    
+    .input {
+      height: 40px;
+      padding-left: 3rem;
+      font-size: 18px;
+    }
+    
+    .search-icon {
+      left: 1rem;
+      width: 1rem;
+      height: 1rem;
+    }
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ödemeler</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="/sidebar.css">
+    <link rel="stylesheet" href="/base.css">
+    <link rel="stylesheet" href="/show-payments.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <div class="header">
+        <div class="header-top">
+            <div id="header-left" class="header-left"><i id="menu-icon" class="material-icons">menu</i>MENÜ</div>
+            <div class="header-right">10 NUMARA SPORTİF GEBZE FUTBOL OKULU</div>
+        </div>
+        <div class="header-bottom">
+            <a href="/search-student.html" id="search-student-header" class="header-content">
+                <i class="material-icons">person_search</i>
+                <div class="name">Öğrenci Ara</div>
+            </a>
+            <a href="/new-registrations.html" id="new-registrations-header" class="header-content">
+                <i class="material-icons-outlined">person_add</i>
+                <div class="name">Yeni Kayıtlar</div>
+                <div class="registration-count">+17</div>
+            </a>
+            <a href="/show-payments.html" id="show-payments-header" class="header-content active">
+                <i class="material-icons-outlined">receipt_long</i>
+                <div class="name">Ödemeleri Görüntüle</div>
+            </a>
+            <div id="statistics-header" class="header-content">
+                <i class="material-icons-outlined">analytics</i>
+                <div class="name">İstatistikler</div>
+            </div>
+            <div id="logout-header" class="header-content">
+                <i class="material-icons-outlined">logout</i>
+                <div class="name">Çıkış Yap</div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-sec">
+        <div class="school">
+            <h1>FUTBOL OKULU</h1>
+            <h2>Raşit Karakuş</h2>
+        </div>
+        <div class="sidebar">
+            <a href="/search-student.html" id="search-student" class="sidebar-content">
+                <i class="material-icons-outlined">person_search</i>
+                <div class="name">Öğrenci Ara</div>
+            </a>
+            <a href="/new-registrations.html" id="new-registrations" class="sidebar-content">
+                <i class="material-icons-outlined">person_add</i>
+                <div class="name">Yeni Kayıtlar</div>
+                <div class="registration-count">+17</div>
+            </a>
+            <a href="/show-payments.html" id="show-payments" class="sidebar-content active">
+                <i class="material-icons">receipt_long</i>
+                <div class="name">Ödemeleri Görüntüle</div>
+            </a>
+            <div id="statistics" class="sidebar-content">
+                <i class="material-icons-outlined">analytics</i>
+                <div class="name">İstatistikler</div>
+            </div>
+            <div id="logout" class="sidebar-content">
+                <i class="material-icons-outlined">logout</i>
+                <div class="name">Çıkış Yap</div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="first">
+            <div class="last-payments">
+                <h2>Son Ödemeler</h2>
+                <div class="last-payments-wrapper"></div>
+            </div>
+            <div class="unpaid-payments">
+                <h2>Ödenmeyi Bekleyenler</h2>
+                <div class="search-section">
+                    <div class="search-student-wrapper">
+                        <div class="input-wrapper">
+                            <div class="group">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" class="search-icon">
+                                <g>
+                                <path
+                                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                                ></path>
+                                </g>
+                            </svg>
+        
+                            <input
+                                id="query"
+                                class="input"
+                                type="search"
+                                placeholder="Öğrenci Ara"
+                                name="searchbar"
+                                autocomplete="off"
+                            />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="unpaid-payments-search-results"></div>
+                </div>
+                <div class="unpaid-payments-elements"></div>
+            </div>
+        </div>
+        <div class="second">
+            <div class="edit-payment">
+                <h2>Ödemeleri Düzenle</h2>
+                <div class="search-section">
+                    <div class="search-student-wrapper">
+                        <div class="input-wrapper">
+                            <div class="group">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" class="search-icon">
+                                <g>
+                                <path
+                                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                                ></path>
+                                </g>
+                            </svg>
+        
+                            <input
+                                id="query_edit"
+                                class="input"
+                                type="search"
+                                placeholder="Öğrenci Ara"
+                                name="searchbar"
+                            />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="edit-payments-search-results"></div>
+                </div>
+                <div class="edit-payments-elements"></div>
+            </div>
+        </div>
+    </div>
+    <script src="sidebar.js"></script>
+    <script src="show-payments.js"></script>
+    <script src="header.js"></script>
+</body>
+</html>

@@ -1,0 +1,694 @@
+*{
+    color: white;
+}
+
+body{
+    display: flex;
+}
+
+.container{
+    width: 80%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container .first{
+    width: 45%;
+}
+
+.container .second{
+    width: 50%;
+    margin-right: 35px;
+}
+
+.student-info{
+    background-color: #151515;
+    width: 100%;
+    height: 435px;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 50px;
+}
+.student-info h1, .parent-info h1{
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.student-info .info, .parent-info .info{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.info h3{
+    width: 30%;
+    color: #adff2f;
+}
+.info h4{
+    width: 67%;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    text-align: right;
+}
+.info h4 i{
+    font-size: 17px;
+    margin-right: 5px;
+}
+
+.parent-info{
+    background-color: #151515;
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.student-edit-delete{
+    background-color: #151515;
+    width: 100%;
+    height: 110px;
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 50px;
+    display: flex;
+}
+
+.student-edit-delete .student-edit, .student-edit-delete .student-delete{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .3s ease;
+    border-radius: 10px;
+    padding: 10px;
+}
+.student-edit:hover{
+    background-color: #48670a;
+}
+.student-delete:hover{
+    background-color: rgb(62, 7, 7);
+}
+.student-edit #edit-icon{
+    font-size: 40px;
+    color: #adff2f;
+}
+.student-delete #delete-icon{
+    font-size: 40px;
+    color: red;
+}
+
+.past-payments{
+    background-color: #151515;
+    width: 100%;
+    height: 545px;
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+.past-payments h1{
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.past-payments .payments-list{
+    width: 100%;
+    height: 450px;
+    overflow-y: auto;
+}
+.past-payments .payments-list::-webkit-scrollbar{
+    width: 10px;
+}
+.past-payments .payments-list::-webkit-scrollbar-track {
+    background: #060606; /* Rayın rengi */
+    border-radius: 5px;
+}
+.past-payments .payments-list::-webkit-scrollbar-thumb {
+    background: #adff2f; /* Scrollbar rengi */
+    border-radius: 5px; /* Köşeleri yuvarlat */
+}
+
+.past-payments .payment{
+    width: 97%;
+    display: flex;
+    background-color: #050505;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.past-payments .payment #payment-date{
+    width: 40%;
+    color: #adff2f;
+}
+.past-payments .payment #payment-value{
+    width: 28%;
+    font-weight: 600;
+    text-align: center;
+}
+.past-payments .payment #date-paid{
+    width: 32%;
+    text-align: right;
+    display: flex;
+    align-items:center;
+    justify-content: right;
+    color: silver;
+}
+
+.past-payments .payment-missing{
+    width: 97%;
+    display: flex;
+    background-color: #050505;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.past-payments .payment-missing #payment-date-missing{
+    width: 40%;
+    color: #ff0000;
+}
+.past-payments .payment-missing #payment-value-missing{
+    width: 25%;
+    font-weight: 600;
+    text-align: center;
+    color: silver;
+}
+.past-payments .payment-missing #date-paid-missing{
+    width: 35%;
+    text-align: right;
+    display: flex;
+    align-items:center;
+    justify-content: right;
+    color: silver;
+}
+
+.past-payments .payment-unknown{
+    width: 97%;
+    display: flex;
+    background-color: #050505;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.past-payments .payment-unknown #payment-date-unknown{
+    width: 40%;
+    color: #454545;
+}
+.past-payments .payment-unknown #payment-value-unknown{
+    width: 25%;
+    font-weight: 600;
+    text-align: center;
+    color: #454545;
+}
+.past-payments .payment-unknown #date-paid-unknown{
+    width: 35%;
+    text-align: right;
+    display: flex;
+    align-items:center;
+    justify-content: right;
+    color: #454545;
+}
+
+.modal-delete-wrapper, .modal-update-wrapper{
+    position: absolute;
+    width: 100%;
+    height: 80vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.modal-update-wrapper{
+    height: 100vh;
+}
+
+.modal-delete, .modal-update{
+    width: 30%;
+    background-color: #151515;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 30px;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 600px 600px rgba(0,0,0,0.75);
+    text-align: center;
+    position: relative;
+}
+.modal-update{
+    width: 50%;
+}
+.modal-delete #close-icon, .modal-update #close-icon-update{
+    font-size: 20px;
+    color: rgb(87, 87, 87);
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    transition: all .3s ease;
+}
+.modal-delete #close-icon:hover, .modal-update #close-icon-update:hover{
+    cursor: pointer;
+    color: red;
+}
+.modal-delete b{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.manual-wrapper{
+    width: 100%;
+    display: flex;
+}
+.manual-wrapper .left, .manual-wrapper .right{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 45px;
+}
+.manual-wrapper .right{
+    align-items: end;
+    text-align: right;
+}
+
+.input-container {
+    position: relative;
+    width: 200px;
+  }
+  
+  .input-container input, select, textarea {
+    font-size: 20px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 5px 0;
+    background-color: transparent;
+    outline: none;
+    position: relative;
+  }
+  .right .input-container input, textarea{
+    text-align: right;
+  }
+
+  .input-container option{
+    background-color: #151515;
+    border-color: #adff2f;
+  }
+  .input-container textarea{
+    resize: none;
+    line-height: 29px;
+  }
+  
+  .input-container .label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #ccc;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  .input-container .label span {
+    vertical-align: middle;
+    color: #adff2f;
+  }
+  .right .info .input-container .label {
+    left: unset;
+    right: 0;
+  }
+  .input-container .lbl {
+    top: -20px;
+  }
+  
+  .input-container input:focus ~ .label,
+  .input-container input:valid ~ .label,
+  .input-container textarea:focus ~ .label{
+    top: -20px;
+    font-size: 16px;
+    color: #adff2f;
+  }
+
+  .input-container .has-content ~ .label{
+    color: #adff2f;
+  }
+  
+  .input-container .underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #adff2f;
+    transform: scaleX(0);
+    transition: all 0.3s ease;
+  }
+  .input-container .adress-underline {
+    bottom: 6px;
+  }
+  
+  .input-container input:focus ~ .underline,
+  .input-container input:valid ~ .underline,
+  .input-container select:focus ~ .underline,
+  .input-container textarea:focus ~ .underline,
+  .input-container select:valid ~ .underline {
+    transform: scaleX(1);
+  }
+
+  .input-container .has-content ~ .underline{
+    transform: scaleX(1);
+  }
+
+  .calendar{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    cursor: pointer;
+  }
+
+#student-delete-tb{
+    width: 70%;
+    font-size: 17px;
+    height: 37px;
+    font-weight: 600;
+    outline: none;
+    border: none;
+    text-align: center;
+    border-bottom: 2px solid #F5F5F5;
+    background-color: #151515;
+}
+
+
+.button, .button-delete {
+    --color: red;
+    padding: 0.4em 1.7em;
+    background-color: transparent;
+    border-radius: .3em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .5s;
+    font-weight: 600;
+    font-size: 17px;
+    border: 1px solid;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: var(--color);
+    z-index: 1;
+    width: 200px;
+   }
+  .button-delete{
+    --color: #575757;
+    cursor: auto;
+  }
+
+  .update_student_button{
+    --color: #adff2f;
+    width: 300px;
+    font-size: 20px;
+  }
+   
+   .button::before, .button::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    background-color: var(--color);
+    transition: .7s ease;
+   }
+   .update_student_button::before , .update_student_button::after{
+    width: 250px;
+    height: 250px;
+  }
+   
+   .button::before {
+    left: -1em;
+    top: -1em;
+   }
+
+   .update_student_button::before {
+    left: -5em;
+    top: -5em;
+   }
+   
+   .button::after {
+    left: calc(100% + 1em);
+    top: calc(100% + 1em);
+   }
+
+   .update_student_button::after {
+    left: calc(100% + 5em);
+    top: calc(100% + 5em);
+   }
+   
+   .button:hover::before, .button:hover::after {
+    width: 260px;
+    height: 260px;
+   }
+
+   .update_student_button:hover::before, .update_student_button:hover::after {
+    width: 560px;
+    height: 560px;
+   }
+   
+   .button:hover {
+    color: rgb(10, 25, 30);
+   }
+   
+   .button:active {
+    filter: brightness(.8);
+   }
+  
+   .button:focus{
+    outline: none;
+    animation: .9s button_animate2;
+   }
+   
+   .update_student_button:focus{
+    animation: .9s button_animate;
+    }
+
+   @keyframes button_animate {
+    0% {
+    }
+    50% {
+        box-shadow: 0px 0px 27px 10px #adff2f;
+    }
+    100% {
+    }
+  }
+  @keyframes button_animate2 {
+    0% {
+    }
+    50% {
+        box-shadow: 0px 0px 27px 10px red;
+    }
+    100% {
+    }
+  }
+
+@media (max-width: 400px){
+    body{
+        display: block;
+    }
+
+    .container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    
+    .container .first{
+        width: 100%;
+    }
+    
+    .container .second{
+        width: 100%;
+    }
+
+    .student-info{
+        height: 470px;
+        margin-top: 100px;
+    }
+    .student-info .info, .parent-info .info{
+        margin-bottom: 4px;
+    }
+    .student-info h1, .parent-info h1{
+        font-size: 25px;
+    }
+    .info h3{
+        width: 37%;
+        font-size: 17px;
+    }
+    .info h4{
+        width: 63%;
+        line-height: 17px;
+        font-size: 15px;
+    }
+    .info h4 i{
+        font-size: 15px;
+        margin-right: 5px;
+    }
+
+    .student-edit-delete{
+        height: 110px;
+        margin-top: 20px;
+    }
+    .student-edit #edit-icon{
+        font-size: 30px;
+    }
+    .student-delete #delete-icon{
+        font-size: 30px;
+    }
+
+    .past-payments{
+        height: 545px;
+        margin-bottom: 20px;
+    }
+    .past-payments h1{
+        font-size: 25px;
+        margin-top: 10px;
+    }
+    
+    .past-payments .payment, .past-payments .payment-missing, .past-payments .payment-unknown{
+        width: 100%;
+        position: relative;
+        height: 80px;
+    }
+    .past-payments .payment #payment-date, .payment-missing #payment-date-missing, .payment-unknown #payment-date-unknown{
+        position: absolute;
+        top: 7px;
+        left: 15px;
+    }
+    .past-payments .payment #payment-value, .payment-missing #payment-value-missing, .payment-unknown #payment-value-unknown{
+        width: unset;
+        position: absolute;
+        right: 20px;
+        top: 18px;
+        font-size: 30px;
+        font-weight: 800;
+    }
+    .past-payments .payment #date-paid, .past-payments .payment-missing #date-paid-missing, .past-payments .payment-unknown #date-paid-unknown{
+        width: unset;
+        text-align: left;
+        justify-content: left;
+        position: absolute;
+        bottom: 7px;
+        left: 15px;
+    }
+
+    .modal-delete-wrapper, .modal-update-wrapper{
+        top: 600px;
+        height: unset;
+    }
+    .modal-update-wrapper{
+        top: 500px;
+        height: 200vh;
+    }
+    
+    .modal-delete, .modal-update{
+        width: 90%;
+        row-gap: 30px;
+        padding: 20px;
+        padding-top: 40px;
+    }
+
+    .buttons{
+        display: flex;
+        flex-direction: column;
+        row-gap: 30px;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    #student-delete-tb{
+        width: 70%;
+        font-size: 17px;
+        height: 37px;
+    }
+    
+    .button, .button-delete {
+        width: 200px;
+       }
+    
+      .update_student_button{
+        --color: #adff2f;
+        width: 300px;
+        font-size: 20px;
+      }
+       
+       .update_student_button::before , .update_student_button::after{
+        width: 250px;
+        height: 250px;
+      }
+    
+       .update_student_button::before {
+        left: -5em;
+        top: -5em;
+       }
+       
+    
+       .update_student_button::after {
+        left: calc(100% + 5em);
+        top: calc(100% + 5em);
+       }
+       
+       .button:hover::before, .button:hover::after {
+        width: 250px;
+        height: 250px;
+       }
+    
+       .update_student_button:hover::before, .update_student_button:hover::after {
+        width: 560px;
+        height: 560px;
+       }
+
+    .manual-wrapper{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 45px;
+    }
+    .manual-wrapper .left, .manual-wrapper .right{
+        width: 100%;
+        align-items: center;
+    }
+    
+    .input-container {
+        position: relative;
+        width: 300px;
+      }
+      
+      .input-container input, select, textarea {
+        align-items: start;
+        text-align: left;
+      }
+
+      .right .input-container input, textarea{
+        text-align: left;
+      }
+
+      .right .info .input-container .label {
+        right: unset;
+        left: 0;
+      }
+}

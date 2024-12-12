@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Öğrenci <%=student.name%></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="/sidebar.css">
+    <link rel="stylesheet" href="/header.css">
+    <link rel="stylesheet" href="/base.css">
+    <link rel="stylesheet" href="/student-info.css">
+</head>
+<body>
+    <div class="header">
+        <div class="header-top">
+            <div id="header-left" class="header-left"><i id="menu-icon" class="material-icons">menu</i>MENÜ</div>
+            <div class="header-right">10 NUMARA SPORTİF GEBZE FUTBOL OKULU</div>
+        </div>
+        <div class="header-bottom">
+            <a href="/search-student.html" id="search-student-header" class="header-content active">
+                <i class="material-icons">person_search</i>
+                <div class="name">Öğrenci Ara</div>
+            </a>
+            <a href="/new-registrations.html" id="new-registrations-header" class="header-content">
+                <i class="material-icons-outlined">person_add</i>
+                <div class="name">Yeni Kayıtlar</div>
+                <div class="registration-count">+17</div>
+            </a>
+            <a href="/show-payments.html" id="show-payments-header" class="header-content">
+                <i class="material-icons-outlined">receipt_long</i>
+                <div class="name">Ödemeleri Görüntüle</div>
+            </a>
+            <div id="statistics-header" class="header-content">
+                <i class="material-icons-outlined">analytics</i>
+                <div class="name">İstatistikler</div>
+            </div>
+            <div id="logout-header" class="header-content">
+                <i class="material-icons-outlined">logout</i>
+                <div class="name">Çıkış Yap</div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-sec">
+        <div class="school">
+            <h1>FUTBOL OKULU</h1>
+            <h2>Raşit Karakuş</h2>
+        </div>
+        <div class="sidebar">
+            <a href="/search-student.html" id="search-student" class="sidebar-content active">
+                <i class="material-icons">person_search</i>
+                <div class="name">Öğrenci Ara</div>
+            </a>
+            <a href="/new-registrations.html" id="new-registrations" class="sidebar-content">
+                <i class="material-icons-outlined">person_add</i>
+                <div class="name">Yeni Kayıtlar</div>
+                <div class="registration-count">+17</div>
+            </a>
+            <a href="/show-payments.html" id="show-payments" class="sidebar-content">
+                <i class="material-icons-outlined">receipt_long</i>
+                <div class="name">Ödemeleri Görüntüle</div>
+            </a>
+            <div id="statistics" class="sidebar-content">
+                <i class="material-icons-outlined">analytics</i>
+                <div class="name">İstatistikler</div>
+            </div>
+            <div id="logout" class="sidebar-content">
+                <i class="material-icons-outlined">logout</i>
+                <div class="name">Çıkış Yap</div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="first">
+            <div class="student-info">
+                <h1 id="h1-student-info">Öğrenci Bilgileri</h1>
+                <div class="info">
+                    <h3>Ad Soyad</h3>
+                    <h4><%=student.name%></h4>
+                </div>
+                <div class="info">
+                    <h3>TC Kimlik No</h3>
+                    <h4><%=student.tc%></h4>
+                </div>
+                <div class="info">
+                    <h3>Doğum Tarihi</h3>
+                    <h4>
+                        <script>
+                        const date = new Date("<%= student.birthdate %>");
+                        const formattedDate = new Intl.DateTimeFormat('tr-TR', {
+                            day: '2-digit',
+                            month: 'long',
+                            year: 'numeric'
+                        }).format(date);
+                        document.write(formattedDate);
+                        </script>
+                    </h4>
+                </div>
+                <div class="info">
+                    <h3>Yaş</h3>
+                    <h4>
+                        <script>
+                            const today = new Date();  // Bugünün tarihi
+                            const birthDate = new Date("<%= student.birthdate.toISOString() %>");  // Doğum tarihi
+                            let age = today.getFullYear() - birthDate.getFullYear();  // Yıl farkını al
+    
+                            // Doğum günü henüz geçmediyse, yaşı 1 azalt
+                            const monthDiff = today.getMonth() - birthDate.getMonth();
+                            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                                age--;
+                            }
+                            document.write(age);
+                        </script>
+                    </h4>
+                </div>
+                <div class="info">
+                    <h3>Grup</h3>
+                    <h4><%=student.group%></h4>
+                </div>
+                <div class="info">
+                    <h3>Üyelik Durumu</h3>
+                    <h4><%=student.membership%></h4>
+                </div>
+                <div class="info">
+                    <h3>Kayıt Tarihi</h3>
+                    <h4>
+                        <script>
+                            const date2 = new Date("<%= student.registration_date %>");
+                            const formattedDate2 = new Intl.DateTimeFormat('tr-TR', {
+                                day: '2-digit',
+                                month: 'long',
+                                year: 'numeric'
+                            }).format(date2);
+                            document.write(formattedDate2);
+                        </script>
+                    </h4>
+                </div>
+                <div class="info">
+                    <h3>Okul</h3>
+                    <h4><%=student.school%></h4>
+                </div>
+                <div class="info">
+                    <h3>Adres</h3>
+                    <h4><%=student.adress%></h4>
+                </div>
+            </div>
+            <div class="parent-info">
+                <h1 id="h1-student-info">Veli Bilgileri</h1>
+                <div class="info">
+                    <h3>Baba Adı</h3>
+                    <h4><%=student.father_name%></h4>
+                </div>
+                <div class="info">
+                    <h3>Baba Telefon</h3>
+                    <h4><i class="material-icons-outlined">content_copy</i> <%=student.father_phone%></h4>
+                </div>
+                <div class="info">
+                    <h3>Anne Adı</h3>
+                    <h4><%=student.mother_name%></h4>
+                </div>
+                <div class="info">
+                    <h3>Anne Telefon</h3>
+                    <h4><i class="material-icons-outlined">content_copy</i> <%=student.mother_phone%></h4>
+                </div>
+            </div>
+        </div>
+        <div class="second">
+            <div class="student-edit-delete">
+                <div class="student-edit">
+                    <i id="edit-icon" class="material-icons-outlined">edit</i>
+                    <div class="student-edit-string">Bilgileri Düzenle</div>
+                </div>
+                <div class="student-delete">
+                    <i id="delete-icon" class="material-icons-outlined">delete</i>
+                    <div class="student-delete-string">Öğrenci Kaydını Sil</div>
+                </div>
+            </div>
+            <div class="past-payments">
+                <h1 class="h1-past-payments">Geçmiş Ödemeler</h1>
+                <div class="payments-list" data-id="<%=student._id%>">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-delete-wrapper">
+        <div class="modal-delete">
+            <i id="close-icon" class="material-icons-outlined">close</i>
+            <h4><b><%=student.name%></b> adlı öğrencinin kaydını silmek için önce aşağıdaki alana öğrencinin ismini yazın!</h4>
+            <div class="buttons">
+                <input type="text" name="" id="student-delete-tb" data-name="<%=student.name%>" autocomplete="off">
+                <div class="no button_wrapper">
+                    <button class="button-delete">KAYDI SİL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-update-wrapper">
+        <div class="modal-update">
+            <i id="close-icon-update" class="material-icons-outlined">close</i>
+            <div class="manual-wrapper">
+                <div class="left">
+                    <div class="info">
+                        <div class="input-container">
+                        <input type="text" id="name" required="" value="<%=student.name%>" autocomplete="off">
+                        <label for="name" class="label">Ad Soyad <span>*</span></label>
+                        <div class="underline"></div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="input-container">
+                        <input type="text" id="tc" required="" value="<%=student.tc%>" autocomplete="off">
+                        <label for="tc" class="label">TC Kimlik No <span>*</span></label>
+                        <div class="underline"></div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="input-container">
+                            <script>
+                                const birthDate_tb = "<%= student.birthdate %>"; // Server-side değer burada
+                                document.addEventListener("DOMContentLoaded", () => {
+                                    const input = document.getElementById("birthdate");
+                                    input.value = new Date(birthDate_tb).toISOString().split("T")[0]; // YYYY-MM-DD formatına çevirir
+                                });
+                            </script>
+                            <input type="date" id="birthdate" required=""> autocomplete="off"
+                            <label for="birthdate" class="label lbl">Doğum Tarihi <span>*</span></label>
+                            <i id="birthdate-icon" class="material-icons calendar">calendar_today</i>
+                            <div class="underline"></div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="input-container">
+                            <script>
+                                const registration_date_tb = "<%= student.registration_date %>"; // Server-side değer burada
+                                document.addEventListener("DOMContentLoaded", () => {
+                                    const input = document.getElementById("registration-date");
+                                    input.value = new Date(registration_date_tb).toISOString().split("T")[0]; // YYYY-MM-DD formatına çevirir
+                                });
+                            </script>
+                        <input type="date" id="registration-date" required="" autocomplete="off">
+                        <label for="registration-date" class="label lbl">Kayıt Tarihi <span>*</span></label>
+                        <i id="registration-date-icon" class="material-icons calendar">calendar_today</i>
+                        <div class="underline"></div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="input-container">
+                        <select name="" id="group" value="<%=student.group%>">
+                            <option value="1">1.Grup</option>
+                            <option value="2">2.Grup</option>
+                            <option value="3">3.Grup</option>
+                            <option value="4">4.Grup</option>
+                            <option value="5">5.Grup</option>
+                            <option value="6">6.Grup</option>
+                        </select>
+                        <div class="underline"></div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="input-container">
+                        <input type="text" id="school" required="" value="<%=student.school%>" autocomplete="off">
+                        <label for="school" class="label">Okul</label>
+                        <div class="underline"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="info">
+                        <div class="input-container">
+                        <input type="text" id="father-name" required="" value="<%=student.father_name%>" autocomplete="off">
+                        <label for="father-name" class="label">Baba Adı</label>
+                        <div class="underline"></div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="input-container">
+                        <input type="text" id="father-phone" required="" value="<%=student.father_phone%>" autocomplete="off">
+                        <label for="father-phone" class="label">Baba Telefon</label>
+                        <div class="underline"></div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="input-container">
+                        <input type="text" id="mother-name" required="" value="<%=student.mother_name%>" autocomplete="off">
+                        <label for="mother-name" class="label">Anne Adı</label>
+                        <div class="underline"></div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="input-container">
+                        <input type="text" id="mother-phone" required="" value="<%=student.mother_phone%>" autocomplete="off">
+                        <label for="mother-phone" class="label">Anne Telefon</label>
+                        <div class="underline"></div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="input-container">
+                        <textarea name="" id="adress" rows="4" cols="28"><%=student.adress%></textarea>
+                        <label for="adress" class="label lbl">Adres</label>
+                        <div class="underline adress-underline"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="update_button_wrapper">
+                <button class="update_student_button button">Kaydet</button>
+            </div>
+        </div>
+    </div>
+    <script src="/student-info.js"></script>
+    <script src="/sidebar.js"></script>
+    <script src="/header.js"></script>
+    <script>
+        const student_edit =document.querySelector('.student-edit');
+        const edit_icon =document.querySelector('#edit-icon');
+        student_edit.addEventListener('mouseover', ()=>{
+            edit_icon.classList.add('material-icons');
+            edit_icon.classList.remove('material-icons-outlined');
+        })
+        student_edit.addEventListener('mouseout', ()=>{
+            edit_icon.classList.add('material-icons-outlined');
+            edit_icon.classList.remove('material-icons');
+        })
+
+        const student_delete =document.querySelector('.student-delete');
+        const delete_icon =document.querySelector('#delete-icon');
+        student_delete.addEventListener('mouseover', ()=>{
+            delete_icon.classList.add('material-icons');
+            delete_icon.classList.remove('material-icons-outlined');
+        })
+        student_delete.addEventListener('mouseout', ()=>{
+            delete_icon.classList.add('material-icons-outlined');
+            delete_icon.classList.remove('material-icons');
+        })
+    </script>
+</body>
+</html>

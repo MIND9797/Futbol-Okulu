@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futbol Okulu</title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div id="login_container" class="container_wrapper">
+            <div class="login_wrapper"><div class="login_text">Futbol Okulu <h4>Raşit Karakuş</h4></div></div>
+            <form action="/login" method="post">
+                <div class="username_wrapper">
+                    <div class="input-container">
+                        <input type="text" name="username" id="username" required="" autocomplete="off">
+                        <label for="username" class="label">Kullanıcı Adı</label>
+                        <div class="underline"></div>
+                    </div>
+                </div>
+                <div class="password_wrapper">
+                    <div class="input-container">
+                        <input type="password" name="password" id="password" required="">
+                        <label for="password" class="label">Şifre</label>
+                        <div class="underline"></div>
+                    </div>
+                </div>
+                <div id="wrong_info">Yanlış kullanıcı adı veya şifre. Tekrar deneyin!</div>
+                <div class="login_button_wrapper">
+                    <button type="submit" class="button login_button">GİRİŞ YAP</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
