@@ -119,6 +119,7 @@ body{
   border-top-left-radius: unset;
   border-top-right-radius: unset;
   border-top: unset;
+  z-index: 999;
 }
  .search-element{
   width: 100%;
