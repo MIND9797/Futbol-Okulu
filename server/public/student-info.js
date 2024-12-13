@@ -193,6 +193,7 @@ textarea.addEventListener('input', () => {
 
 const delete_tb = document.querySelector('#student-delete-tb');
 const button_delete = document.querySelector('.button-delete');
+const button = document.querySelector('.delete-sec');
 
 delete_tb.addEventListener('input', ()=>{
     if(delete_tb.value == delete_tb.dataset.name){
@@ -205,6 +206,26 @@ delete_tb.addEventListener('input', ()=>{
         button_delete.classList.add('button-delete');
         delete_tb.style.color = '#F5F5F5';
         delete_tb.style.borderColor = '#F5F5F5';
+    }
+})
+
+button.addEventListener('click', async ()=>{
+    if(button.classList.contains('button')){
+        const _id = button.dataset.id;
+        try {
+            const response = await fetch('/api/delete-student', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ _id: _id })
+            });
+    
+            const data = await response.json();
+            if(data == 'OK') alert('Öğrenci silindi!');
+        } catch (error) {
+            console.error('Hata:', error);
+        }
     }
 })
 

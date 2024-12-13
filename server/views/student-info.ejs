@@ -192,7 +192,7 @@
             <div class="buttons">
                 <input type="text" name="" id="student-delete-tb" data-name="<%=student.name%>" autocomplete="off">
                 <div class="no button_wrapper">
-                    <button class="button-delete">KAYDI SİL</button>
+                    <button class="button-delete delete-sec" data-id="<%=student._id%>">KAYDI SİL</button>
                 </div>
             </div>
         </div>
@@ -225,7 +225,7 @@
                                     input.value = new Date(birthDate_tb).toISOString().split("T")[0]; // YYYY-MM-DD formatına çevirir
                                 });
                             </script>
-                            <input type="date" id="birthdate" required=""> autocomplete="off"
+                            <input type="date" id="birthdate" required="" autocomplete="off">
                             <label for="birthdate" class="label lbl">Doğum Tarihi <span>*</span></label>
                             <i id="birthdate-icon" class="material-icons calendar">calendar_today</i>
                             <div class="underline"></div>

@@ -168,6 +168,40 @@ async function google_form_registrations() {
     });
 }
 
+const save_button = document.querySelector('.add_student_button');
+
+const name_ = document.querySelector('#name');
+const tc_ = document.querySelector('#tc');
+const birthdate_ = document.querySelector('#birthdate');
+const registration_date_ = document.querySelector('#registration-date');
+const group_ = document.querySelector('#group');
+const school_ = document.querySelector('#school');
+const father_name_ = document.querySelector('#father-name');
+const father_phone_ = document.querySelector('#father-phone');
+const mother_name_ = document.querySelector('#mother-name');
+const mother_phone_ = document.querySelector('#mother-phone');
+const adress_ = document.querySelector('#adress');
+const membership_ = 'Aktif';
+
+save_button.addEventListener('click', async ()=>{
+    try {
+        const response = await fetch('/api/new-student', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: name_.value, tc: tc_.value, birthdate: birthdate_.value, registration_date: registration_date_.value,
+            group: group_.value, school: school_.value, father_name: father_name_.value, father_phone: father_phone_.value,
+            mother_name: mother_name_.value, mother_phone: mother_phone_.value, adress: adress_.value, membership: membership_ })
+        });
+
+        const data = await response.json();
+        if(data == 'OK') alert('Öğrenci kaydedildi!');
+    } catch (error) {
+        console.error('Hata:', error);
+    }
+})
+
 function loadPage(){
     last_registrations();
     google_form_registrations();

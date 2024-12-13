@@ -146,10 +146,6 @@ query.addEventListener('input', async ()=>{
 })
 
 async function transfer_unpaid_payment(_id, owner, amount, payment_date, date_paid) {
-    console.log(owner + '\n' + amount + '\n' + payment_date + '\n' + date_paid);
-    console.log(payment_date);
-    
-    
     try {
         const response = await fetch('/api/delete-unpaid-payment', {
             method: 'POST',
