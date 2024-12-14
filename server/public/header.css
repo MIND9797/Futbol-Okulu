@@ -1,4 +1,5 @@
 .header{
+    width: 100%;
     display: none;
     flex-direction: column;
     align-items: center;
@@ -13,6 +14,7 @@
 }
 
 .header-top{
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -32,10 +34,23 @@
 }
 
 .header-right{
+    display: flex;
+    column-gap: 20px;
     color: #adff2f;
     font-size: 15px;
     text-align: right;
-    width: 50%;
+    align-items: center;
+    width: 60%;
+}
+
+.header-right .text{
+    color: #adff2f;
+}
+
+.header-right img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
 }
 
 .header-bottom{

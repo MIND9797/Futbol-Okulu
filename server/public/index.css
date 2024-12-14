@@ -17,27 +17,17 @@
     flex-direction: column;
     row-gap: 10px;
 }
-.login_wrapper{
+.login-img-wrapper{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
-    margin-right: 20px;
+    margin-bottom: 50px;
+    margin-top: 150px;
 }
-.login_text{
-    color: #adff2f;
-    font-size: 45px;
-    font-weight: 700;
-    width: 350px;
-    text-align: center;
-    margin-left: -5px;
-    margin-top: 170px;
-    margin-bottom: 30px;
-}
-.login_text h4{
-    font-size: 35px;
-    color: silver;
-    font-style: italic;
+.login-img-wrapper img{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
 }
 .username_wrapper, .password_wrapper{
     width: 350px;
@@ -215,12 +205,8 @@
       width: 100%;
     }
 
-    .login_text{
-      margin-left: 10px;
-    }
-
     #wrong_info{
-      margin-left: 52px;
+      margin-right: 45px;
     }
   }
   
