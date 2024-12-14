@@ -196,6 +196,7 @@
     overflow: hidden;
     transition: .4s;
     width: 270px;
+    margin-left: 40px;
     display: flex;
     align-items: center;
     justify-content: center;

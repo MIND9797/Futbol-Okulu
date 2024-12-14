@@ -165,6 +165,30 @@ async function google_form_registrations() {
                 arrow_icon.innerHTML = 'keyboard_arrow_down';
             }
         })
+
+        const accept_button = row.querySelector('.accept-button');
+
+        accept_button.addEventListener('click', async ()=>{
+            try {
+                const response = await fetch('/api/new-student', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name: student[1].trim(), tc: student[2], birthdate: birthdate, registration_date: registrationDate,
+                    group: '1', school: student[8], father_name: student[4], father_phone: student[5],
+                    mother_name: student[6], mother_phone: student[7], adress: student[9], membership: 'Aktif' })
+                });
+        
+                const data = await response.json();
+                if(data == 'OK') {
+                    alert('Öğrenci kaydedildi!');
+                    window.location.href = '../new-registrations';
+                }
+            } catch (error) {
+                console.error('Hata:', error);
+            }
+        })
     });
 }
 
@@ -183,7 +207,9 @@ const mother_phone_ = document.querySelector('#mother-phone');
 const adress_ = document.querySelector('#adress');
 const membership_ = 'Aktif';
 
-save_button.addEventListener('click', async ()=>{
+document.getElementById('new-student-form').addEventListener('submit', async (event) => {
+    event.preventDefault(); 
+
     try {
         const response = await fetch('/api/new-student', {
             method: 'POST',
@@ -196,11 +222,52 @@ save_button.addEventListener('click', async ()=>{
         });
 
         const data = await response.json();
-        if(data == 'OK') alert('Öğrenci kaydedildi!');
+        if(data == 'OK') {
+            alert('Öğrenci kaydedildi!');
+            window.location.href = '../new-registrations';
+        }
     } catch (error) {
         console.error('Hata:', error);
     }
-})
+});
+
+const infos = document.querySelectorAll('.info');
+
+for (let i = 0; i < infos.length; i++) {
+    const _input = infos[i].getElementsByTagName('input')[0];
+    const _texarea = infos[i].getElementsByTagName('textarea')[0];
+    
+    const _label = infos[i].querySelector('.label');
+    const _underline = infos[i].querySelector('.underline');
+
+    if(_input){
+        _input.addEventListener('input', ()=>{
+            if(_input.value != ""){
+                _label.style.color = '#adff2f';
+                _label.style.top = '-20px';
+                _underline.style.transform = 'scaleX(1)';
+            }
+            else{
+                _label.style.color = '#F5F5F5';
+                _label.style.top = '0px';
+                _underline.style.transform = 'scaleX(0)';
+            }
+        })
+    }
+    else if(_texarea){
+        _texarea.addEventListener('input', ()=>{
+            if(_texarea.value != ""){
+                _label.style.color = '#adff2f';
+                _underline.style.transform = 'scaleX(1)';
+            }
+            else{
+                _label.style.color = '#F5F5F5';
+                _underline.style.transform = 'scaleX(0)';
+            }
+        })
+    }
+}
+
 
 function loadPage(){
     last_registrations();

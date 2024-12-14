@@ -191,6 +191,42 @@ textarea.addEventListener('input', () => {
     }
 });
 
+const name_ = document.querySelector('#name');
+const tc_ = document.querySelector('#tc');
+const birthdate_ = document.querySelector('#birthdate');
+const registration_date_ = document.querySelector('#registration-date');
+const group_ = document.querySelector('#group');
+const school_ = document.querySelector('#school');
+const father_name_ = document.querySelector('#father-name');
+const father_phone_ = document.querySelector('#father-phone');
+const mother_name_ = document.querySelector('#mother-name');
+const mother_phone_ = document.querySelector('#mother-phone');
+const adress_ = document.querySelector('#adress');
+const membership_ = 'Aktif';
+
+document.querySelector('.update_student_button').addEventListener('click', async ()=>{
+    try {
+        const response = await fetch('/api/update-student', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: owner_id, name: name_.value, tc: tc_.value, birthdate: birthdate_.value, registration_date: registration_date_.value,
+            group: group_.value, school: school_.value, father_name: father_name_.value, father_phone: father_phone_.value,
+            mother_name: mother_name_.value, mother_phone: mother_phone_.value, adress: adress_.value, membership: membership_ })
+        });
+
+        const data = await response.json();
+        if(data == 'OK') {
+            modal_update.style.display = 'none';
+            modal_delete_ok.querySelector('#delete-ok-message').innerText = 'Öğrenci bilgileri başarıyla güncellenmiştir!';
+            modal_delete_ok.style.display = 'flex';
+        }
+    } catch (error) {
+        console.error('Hata:', error);
+    }
+})
+
 const delete_tb = document.querySelector('#student-delete-tb');
 const button_delete = document.querySelector('.button-delete');
 const button = document.querySelector('.delete-sec');
@@ -209,6 +245,8 @@ delete_tb.addEventListener('input', ()=>{
     }
 })
 
+const modal_delete_ok = document.querySelector('.modal-delete-ok-wrapper');
+
 button.addEventListener('click', async ()=>{
     if(button.classList.contains('button')){
         const _id = button.dataset.id;
@@ -222,11 +260,51 @@ button.addEventListener('click', async ()=>{
             });
     
             const data = await response.json();
-            if(data == 'OK') alert('Öğrenci silindi!');
+            if(data == 'OK') {
+                try {
+                    const response = await fetch('/api/delete-student-payments', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ _id: _id })
+                    });
+            
+                    const data = await response.json();
+                    if(data == 'OK') {
+                        modal_delete.style.display = 'none';
+                        modal_delete_ok.style.display = 'flex';
+                    }
+                } catch (error) {
+                    console.error('Hata:', error);
+                }
+            }
         } catch (error) {
             console.error('Hata:', error);
         }
     }
+})
+
+document.querySelector('.delete_student_ok_button').addEventListener('click', ()=>{
+    window.location.href = '../search-student';
+})
+
+modal_delete_ok.querySelector('#close-icon').addEventListener('click', ()=>{
+    window.location.href = '../search-student';
+})
+
+const copy_father_phone = document.querySelector('#copy-father-phone');
+const father_phone = document.querySelector('#father-phone');
+
+copy_father_phone.addEventListener('click', ()=>{
+    navigator.clipboard.writeText(father_phone.dataset.phone);
+})
+
+const copy_mother_phone = document.querySelector('#copy-mother-phone');
+const mother_phone = document.querySelector('#mother-phone');
+
+copy_mother_phone.addEventListener('click', ()=>{
+    navigator.clipboard.writeText(mother_phone.dataset.phone);
 })
 
 async function Tasks() {

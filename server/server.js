@@ -101,12 +101,13 @@ server.get('/search-student', isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'search-student.html'));
 });
 
-server.get('/students/:name', isAuthenticated, async (req, res) => {
+server.get('/students/:name',  async (req, res) => {
     const student_name = req.params.name;
     const formatted_name = student_name.replace(/\-/g, ' ');
     try {
         const student = await Student.findOne({ name: formatted_name });
-        res.status(200).render('student-info', {student});
+        if(student) res.status(200).render('student-info', {student});
+        else res.sendFile(path.join(__dirname, 'public', 'student-not-found.html'));
     } catch (error) {
         console.error('API Hatası:', error);
         res.status(500).json({ error: 'Kullanıcıları getirirken bir hata oluştu.' });
@@ -134,6 +135,19 @@ server.post('/login', async (req, res) => {
         res.status(401).send('Kullanıcı adı veya şifre hatalı!');
     }
 });
+
+server.get('/logout', (req, res) => {
+    // Session'u yok et
+    req.session.destroy((err) => {
+      if (err) {
+        console.error('Session sonlandırılamadı:', err);
+        return res.status(500).send('Çıkış sırasında bir hata oluştu.');
+      }
+      // Kullanıcıyı login sayfasına yönlendir
+      res.redirect('/');
+    });
+  });
+  
 
 server.post('/api/check-month', async (req, res) => {
     const { month, year } = req.body;
@@ -255,6 +269,79 @@ server.post('/api/find-unpaid-payments', async (req, res) => {
     }
 });
 
+server.post('/api/delete-student-payments', async (req, res) => {
+    const { _id } = req.body;
+    
+    try {
+        const result = await Payment.deleteMany({ owner: _id });
+        res.status(200).json('OK');
+    } catch (error) {
+        console.error('API Hatası:', error);
+        res.status(500).json({ error: 'Verileri getirirken bir hata oluştu.' });
+    }
+});
+
+server.post('/api/new-student', async (req, res) => {
+    try {
+        const { name, tc, birthdate, registration_date, group, school, father_name, father_phone, mother_name, mother_phone, adress, membership } = req.body;
+
+        // Yeni öğrenci oluştur
+        const newStudent = new Student({ name, tc, birthdate, registration_date, group, school, father_name, father_phone, mother_name, mother_phone, adress, membership });
+        await newStudent.save();
+
+        res.status(200).json('OK');
+    } catch (error) {
+        console.error('Hata:', error);
+        res.status(500).json({ message: 'Bir hata oluştu', error });
+    }
+});
+
+server.post('/api/update-student', async (req, res) => {
+    try {
+        const { id, name, tc, birthdate, registration_date, group, school, father_name, father_phone, mother_name, mother_phone, adress, membership } = req.body;
+
+        // Yeni öğrenci oluştur
+        const updatedStudent = await Student.findByIdAndUpdate(
+            id, // Güncellenecek öğrencinin ID'si
+            { 
+                name, 
+                tc, 
+                birthdate, 
+                registration_date, 
+                group, 
+                school, 
+                father_name, 
+                father_phone, 
+                mother_name, 
+                mother_phone, 
+                adress, 
+                membership 
+            },
+            { new: true, runValidators: true } // Güncellenmiş belgeyi döndür ve doğrulama çalıştır
+        );
+
+        res.status(200).json('OK');
+    } catch (error) {
+        console.error('Hata:', error);
+        res.status(500).json({ message: 'Bir hata oluştu', error });
+    }
+});
+
+server.post('/api/delete-student', async (req, res) => {
+    const { _id } = req.body;
+    
+    try {
+        const result = await Student.deleteOne({ _id: _id });
+        if(result.deletedCount === 1){
+            res.status(200).json('OK');
+        }
+        else res.status(400).json('error');
+    } catch (error) {
+        console.error('API Hatası:', error);
+        res.status(500).json({ error: 'Verileri getirirken bir hata oluştu.' });
+    }
+});
+
 server.get('/api/students-list', async (req, res) => {
     try {
         const students = await Student.find();
@@ -294,6 +381,27 @@ server.post('/api/find-payments', async (req, res) => {
     } catch (error) {
         console.error('API Hatası:', error);
         res.status(500).json({ error: 'Ödemeleri getirirken bir hata oluştu.' });
+    }
+});
+
+server.post('/api/update-payment', async (req, res) => {
+    try {
+        const { id, amount, date_paid } = req.body;
+
+        // Yeni öğrenci oluştur
+        const updatedPayment = await Payment.findByIdAndUpdate(
+            id, // Güncellenecek öğrencinin ID'si
+            { 
+                amount,
+                date_paid
+            },
+            { new: true, runValidators: true } // Güncellenmiş belgeyi döndür ve doğrulama çalıştır
+        );
+
+        res.status(200).json('OK');
+    } catch (error) {
+        console.error('Hata:', error);
+        res.status(500).json({ message: 'Bir hata oluştu', error });
     }
 });
 
@@ -388,5 +496,4 @@ async function get_registration_count() {
 
 server.listen(PORT, () => {
     get_registration_count();
-    console.log(`Sunucu http://localhost:${PORT} üzerinde çalışıyor.`);
 });

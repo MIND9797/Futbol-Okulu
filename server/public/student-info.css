@@ -57,6 +57,7 @@ body{
 .info h4 i{
     font-size: 17px;
     margin-right: 5px;
+    cursor: pointer;
 }
 
 .parent-info{
@@ -216,7 +217,7 @@ body{
     color: #454545;
 }
 
-.modal-delete-wrapper, .modal-update-wrapper{
+.modal-delete-wrapper, .modal-update-wrapper, .modal-delete-ok-wrapper{
     position: absolute;
     width: 100%;
     height: 80vh;
@@ -228,7 +229,7 @@ body{
     height: 100vh;
 }
 
-.modal-delete, .modal-update{
+.modal-delete, .modal-update, .modal-delete-ok{
     width: 30%;
     background-color: #151515;
     display: flex;
@@ -245,7 +246,7 @@ body{
 .modal-update{
     width: 50%;
 }
-.modal-delete #close-icon, .modal-update #close-icon-update{
+.modal-delete #close-icon, .modal-update #close-icon-update, .modal-delete-ok #close-icon{
     font-size: 20px;
     color: rgb(87, 87, 87);
     position: absolute;
@@ -253,7 +254,7 @@ body{
     right: 15px;
     transition: all .3s ease;
 }
-.modal-delete #close-icon:hover, .modal-update #close-icon-update:hover{
+.modal-delete #close-icon:hover, .modal-update #close-icon-update:hover, .modal-delete-ok #close-icon:hover{
     cursor: pointer;
     color: red;
 }
@@ -416,7 +417,7 @@ body{
     cursor: auto;
   }
 
-  .update_student_button{
+  .update_student_button, .delete_student_ok_button{
     --color: #adff2f;
     width: 300px;
     font-size: 20px;
@@ -434,7 +435,7 @@ body{
     background-color: var(--color);
     transition: .7s ease;
    }
-   .update_student_button::before , .update_student_button::after{
+   .update_student_button::before , .update_student_button::after, .delete_student_ok_button::before, .delete_student_ok_button::after{
     width: 250px;
     height: 250px;
   }
@@ -444,7 +445,7 @@ body{
     top: -1em;
    }
 
-   .update_student_button::before {
+   .update_student_button::before, .delete_student_ok_button::before {
     left: -5em;
     top: -5em;
    }
@@ -454,7 +455,7 @@ body{
     top: calc(100% + 1em);
    }
 
-   .update_student_button::after {
+   .update_student_button::after, .delete_student_ok_button::after {
     left: calc(100% + 5em);
     top: calc(100% + 5em);
    }
@@ -464,7 +465,7 @@ body{
     height: 260px;
    }
 
-   .update_student_button:hover::before, .update_student_button:hover::after {
+   .update_student_button:hover::before, .update_student_button:hover::after, .delete_student_ok_button:hover::before, .delete_student_ok_button:hover::after {
     width: 560px;
     height: 560px;
    }
@@ -482,7 +483,7 @@ body{
     animation: .9s button_animate2;
    }
    
-   .update_student_button:focus{
+   .update_student_button:focus, .delete_student_ok_button:focus{
     animation: .9s button_animate;
     }
 
@@ -596,7 +597,11 @@ body{
         left: 15px;
     }
 
-    .modal-delete-wrapper, .modal-update-wrapper{
+    .past-payments .payments-list::-webkit-scrollbar{
+        width: 0px;
+    }
+
+    .modal-delete-wrapper, .modal-update-wrapper, .modal-delete-ok-wrapper{
         top: 600px;
         height: unset;
     }
@@ -605,7 +610,7 @@ body{
         height: 200vh;
     }
     
-    .modal-delete, .modal-update{
+    .modal-delete, .modal-update, .modal-delete-ok{
         width: 90%;
         row-gap: 30px;
         padding: 20px;
@@ -631,24 +636,24 @@ body{
         width: 200px;
        }
     
-      .update_student_button{
+      .update_student_button, .delete_student_ok_button{
         --color: #adff2f;
         width: 300px;
         font-size: 20px;
       }
        
-       .update_student_button::before , .update_student_button::after{
+       .update_student_button::before , .update_student_button::after, .delete_student_ok_button::before, .delete_student_ok_button::after{
         width: 250px;
         height: 250px;
       }
     
-       .update_student_button::before {
+       .update_student_button::before, .delete_student_ok_button::before {
         left: -5em;
         top: -5em;
        }
        
     
-       .update_student_button::after {
+       .update_student_button::after, .delete_student_ok_button::after {
         left: calc(100% + 5em);
         top: calc(100% + 5em);
        }
@@ -658,7 +663,7 @@ body{
         height: 250px;
        }
     
-       .update_student_button:hover::before, .update_student_button:hover::after {
+       .update_student_button:hover::before, .update_student_button:hover::after, .delete_student_ok_button:hover::before, .delete_student_ok_button:hover::after {
         width: 560px;
         height: 560px;
        }

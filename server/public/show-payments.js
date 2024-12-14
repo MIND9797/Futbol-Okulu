@@ -451,6 +451,30 @@ async function edit_payments(type, id) {
                 unpaid_payments(1, '');
             }
         })
+
+        const pay = row.querySelector('.pay');
+
+        pay.addEventListener('click', async ()=>{
+            try {
+                const response = await fetch('/api/update-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id: payment._id, amount: dues_tb.value, date_paid: calendar.value })
+                });
+        
+                const data = await response.json();
+                if(data == 'OK') {
+                    alert('Ödeme başarıyla düzenlendi!');
+                    last_payments();
+                    edit_payments(1, '');
+                    unpaid_payments(1, '');
+                }
+            } catch (error) {
+                console.error('Hata:', error);
+            }
+        })
     })
 }
 
