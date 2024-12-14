@@ -494,6 +494,75 @@ async function get_registration_count() {
     }
 }
 
+server.get('/api/form-student-delete/:name', async (req, res) => {
+    const student_name = req.params.name;
+    const formatted_name = student_name.replace(/\-/g, ' ');
+    try {
+        // Google Sheets'ten verileri çek
+        const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${process.env.SHEET_ID}/values/A2:N100?key=${process.env.SHEETS_API_KEY}`);
+        const data = await response.json();
+
+        if (data.values) {
+            // Silmek istediğiniz değeri kontrol edin
+            let rowIndexToDelete = null;
+
+            for (let i = 0; i < data.values.length; i++) {
+                const row = data.values[i];
+                if (row[1] === formatted_name) { // 0. sütun (A sütunu) kontrol ediliyor
+                    rowIndexToDelete = i + 2; // Satır numarası (A2 -> index 0 + 2)
+                    break;
+                }
+            }
+
+            if (rowIndexToDelete) {
+                // Satırı sil
+                await deleteRow(rowIndexToDelete);
+                res.status(200).json('OK');
+            } else {
+                res.status(404).json({ error: 'Silinecek değer bulunamadı.' });
+            }
+        } else {
+            res.status(404).json({ error: 'Veri bulunamadı.' });
+        }
+    } catch (error) {
+        console.error('API Hatası:', error);
+        res.status(500).json({ error: 'Kullanıcıları getirirken bir hata oluştu.' });
+    }
+});
+
+async function deleteRow(rowIndex) {
+    try {
+        const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${process.env.SHEET_ID}:batchUpdate?key=${process.env.SHEETS_API_KEY}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                requests: [
+                    {
+                        deleteDimension: {
+                            range: {
+                                sheetId: 0, // İlk sayfa için genellikle 0
+                                dimension: 'ROWS',
+                                startIndex: rowIndex - 1, // Başlangıç indeksi (0 tabanlı)
+                                endIndex: rowIndex, // Bitiş indeksi (satır dahil değil)
+                            },
+                        },
+                    },
+                ],
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Satır silme başarısız: ${response.statusText}`);
+        }
+
+        console.log(`Satır ${rowIndex} başarıyla silindi.`);
+    } catch (error) {
+        console.error('Satır silme hatası:', error);
+    }
+}
+
 server.listen(PORT, () => {
     get_registration_count();
 });

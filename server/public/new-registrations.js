@@ -182,7 +182,10 @@ async function google_form_registrations() {
         
                 const data = await response.json();
                 if(data == 'OK') {
-                    alert('Öğrenci kaydedildi!');
+                    const formatted_name = student[1].replace(/\s+/g, '-');
+                    const response = await fetch(`/api/form-student-delete/${encodeURIComponent(formatted_name)}`);
+                    const data = await response.json();
+                    if(data == 'OK') alert('Öğrenci kaydedildi!');
                     window.location.href = '../new-registrations';
                 }
             } catch (error) {
