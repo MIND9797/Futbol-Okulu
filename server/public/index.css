@@ -217,6 +217,10 @@
 
     .login_text{
       margin-left: 0px;
-  }
+    }
+
+    #wrong_info{
+      margin-left: 52px;
+    }
   }
   
