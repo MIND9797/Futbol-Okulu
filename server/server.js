@@ -101,7 +101,7 @@ server.get('/search-student', isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'search-student.html'));
 });
 
-server.get('/students/:name',  async (req, res) => {
+server.get('/students/:name', isAuthenticated, async (req, res) => {
     const student_name = req.params.name;
     const formatted_name = student_name.replace(/\-/g, ' ');
     try {

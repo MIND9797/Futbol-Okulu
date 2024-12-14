@@ -1,3 +1,5 @@
+let timeout;
+
 document.getElementById('loginForm').addEventListener('submit', async (event) => {
     event.preventDefault(); // Formun varsayılan gönderimini engelle
 
@@ -19,7 +21,8 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
         } else if (response.status === 401) {
             // Hata mesajını göster
             document.getElementById('wrong_info').style.height = '20px';
-            setTimeout(() => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
                 document.getElementById('wrong_info').style.height = '0px';
             }, 3000);
         } else {

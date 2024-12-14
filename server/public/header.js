@@ -1,5 +1,6 @@
 const header_bottom = document.querySelector('.header-bottom');
 const header = document.querySelector('.header');
+header_bottom.style.height = '0px';
 
 document.addEventListener('click', (event)=>{
     const clickedElement = event.target;
