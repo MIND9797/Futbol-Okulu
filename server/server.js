@@ -127,7 +127,7 @@ server.post('/login', async (req, res) => {
 
     const hash = crypto.createHash('sha1').update(password).digest('hex');
 
-    if (username === process.env.ADMIN_USERNAME && hash === process.env.ADMIN_PASSWORD) {
+    if ((username === process.env.ADMIN_USERNAME && hash === process.env.ADMIN_PASSWORD) || (username === process.env.GUEST_USERNAME && hash === process.env.GUEST_PASSWORD)) {
         req.session.isAuthenticated = true;
         req.session.username = username; // Gerekirse kullanıcının adını kaydedin
         res.redirect('/search-student');
