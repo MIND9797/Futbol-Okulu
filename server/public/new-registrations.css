@@ -451,6 +451,9 @@ body{
       border-radius: 20px;
       margin-top: 40px;
     }
+    .form-registrations .registrations::-webkit-scrollbar{
+      width: 0px;
+    }
     .form-registrations h2{
       font-size: 20px;
       margin-top: 10px;
